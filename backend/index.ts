@@ -8,10 +8,6 @@ const port = env.PORT || 3000;
 
 app.use(express.json());
 
-/* 
- * todo: add typechain andf typescript
- */
-
 app.get("/", async (req: any, res) => {
     try {
         res.send("Welcome to our free mint marketplace. Please call 'url/listItems' to list minted NFTs, or 'url/purchase/:nftId' to buy one!");
