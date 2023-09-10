@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 import { Alchemy } from "alchemy-sdk";
 import env from './environment';
 import alchemy_config from './alchemy_config';
-import { DefaultNFT__factory } from "./typechain-types/factories/contracts/DefaultNFT__factory"
+import { DefaultNFT__factory } from "../typechain-types/factories/contracts/DefaultNFT__factory"
 
 const alchemy = new Alchemy(alchemy_config);
 
