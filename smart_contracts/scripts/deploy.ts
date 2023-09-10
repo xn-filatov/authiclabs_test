@@ -8,7 +8,7 @@ async function main() {
   await contract.waitForDeployment();
 
   console.log(
-    `DefaultNFT successfully deployed to ${contract.target}`
+    `${deploySettings.contractName} successfully deployed to ${contract.target}`
   );
 }
 
