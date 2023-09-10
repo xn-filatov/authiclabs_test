@@ -1,0 +1,52 @@
+swagger: "2.0"
+info:
+  title: Authic Labs Assigment
+  description: Authic Labs Gasless NFT minting solution
+  version: 1.0
+  contact:
+    email: xanhadev@gmail.com
+
+paths:
+  /:
+    get:
+      tags:
+        - Main
+      description: Responds if the app is up and running
+      responses:
+        200:
+          description: App is up and running
+
+  /listItems:
+    get:
+      tags:
+        - List NFTs
+      description: Lists minted NFTs of a collection and amount of NFTs available to mint.
+      responses:
+        200:
+          description: App is up and running
+
+  /purchase/{userAddress}/{nftQuantity}:
+    post:
+      tags:
+        - Purchase
+      parameters:
+        - name: userAddress
+          in: path
+          description: User address to send NFTs to
+          required: true
+        - name: nftQuantity
+          in: path
+          description: Quantity of NFTs to send
+          required: true
+      description: Mints requested quantity of NFTs to a provided user address.
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+            schema:
+              $ref: "#/components/schema/productResponse"
+        400:
+          description: Wrong user address
+        401:
+          description: Quantity could not be lesser than 1

@@ -2,24 +2,19 @@ import express from "express";
 import env from './environment';
 import { ethers } from "ethers";
 import { getCollectionNfts, getMaxSupply, contract } from "./utils";
-import swaggerDocs from "./swagger";
+import swaggerUi from "swagger-ui-express";
+import fs from 'fs'
+import YAML from 'yaml'
 
 const app = express();
 const port = env.PORT || 3000;
 
 app.use(express.json());
 
-/**
- * @openapi
- * /:
- *  get:
- *     tags:
- *     - Main
- *     description: Responds if the app is up and running
- *     responses:
- *       200:
- *         description: App is up and running
- */
+const file = fs.readFileSync('./api.yaml', 'utf8')
+const swaggerDoc = YAML.parse(file)
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc))
+
 app.get("/", async (req: any, res) => {
     try {
         res.send("Welcome to our free mint marketplace. Please call 'url/listItems' to list minted NFTs, or 'url/purchase/:nftId' to buy one!");
@@ -29,18 +24,6 @@ app.get("/", async (req: any, res) => {
     }
 });
 
-
-/**
- * @openapi
- * /listItems:
- *  get:
- *     tags:
- *     - List NFTs
- *     description: Lists minted NFTs of a collection and amount of NFTs available to mint.
- *     responses:
- *       200:
- *         description: App is up and running
- */
 app.get("/listItems", async (req, res) => {
     try {
         var maxSupply = await getMaxSupply();
@@ -57,35 +40,6 @@ app.get("/listItems", async (req, res) => {
 
 /**
  * todo: add MAX_GAS ???
- */
-
-/**
- * @openapi
- * '/purchase/{userAddress}/{nftQuantity}':
- *  post:
- *     tags:
- *     - Purchase
- *     summary: Get a single product by the productId
- *     parameters:
- *      - name: userAddress
- *        in: path
- *        description: User address to send NFTs to
- *        required: true
- *      - name: nftQuantity
- *        in: path
- *        description: Quantity of NFTs to send
- *        required: true
- *     responses:
- *       200:
- *         description: Success
- *         content:
- *          application/json:
- *           schema:
- *              $ref: '#/components/schema/productResponse'
- *       400:
- *         description: Wrong user address
- *       401:
- *         description: Quantity could not be lesser than 1
  */
 app.post("/purchase/:userAddress/:nftQuantity", async (req: any, res) => {
     let { userAddress, nftQuantity } = req.params;
@@ -119,7 +73,4 @@ app.post("/purchase/:userAddress/:nftQuantity", async (req: any, res) => {
 
 app.listen(port, async () => {
     console.log(`App listening on port ${port}`);
-
-    swaggerDocs(app, 8080);
-
 });
