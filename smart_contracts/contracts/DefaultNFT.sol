@@ -7,7 +7,10 @@ pragma solidity ^0.8.9;
 import "./ERC721.sol";
 
 contract DefaultNFT is Ownable, ERC721 {
-    constructor() ERC721("DefaultNFT", "DNFT") {}
+    constructor(
+        string memory _name,
+        string memory _symbol
+    ) ERC721(_name, _symbol) {}
 
     uint256 public constant MAX_SUPPLY = 1000;
     uint256 public totalSupply = 0;

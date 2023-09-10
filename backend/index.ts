@@ -37,10 +37,6 @@ app.get("/listItems", async (req, res) => {
     }
 });
 
-
-/**
- * todo: add MAX_GAS ???
- */
 app.post("/purchase/:userAddress/:nftQuantity", async (req: any, res) => {
     let { userAddress, nftQuantity } = req.params;
     try {

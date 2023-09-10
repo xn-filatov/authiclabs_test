@@ -24,6 +24,11 @@
     "typescript": ">=4.5.0"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.9.3"
+    "@openzeppelin/contracts": "^4.9.3",
+    "dotenv": "^16.3.1"
+  },
+  "scripts": {
+    "deploy": "npx hardhat run scripts/deploy.ts --network default",
+    "test": "node index.ts"
   }
 }
