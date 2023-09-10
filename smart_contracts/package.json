@@ -29,6 +29,6 @@
   },
   "scripts": {
     "deploy": "npx hardhat run scripts/deploy.ts --network default",
-    "test": "node index.ts"
+    "test": "npx hardhat test"
   }
 }

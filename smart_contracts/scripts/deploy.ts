@@ -2,7 +2,8 @@ import { ethers } from "hardhat";
 import { deploySettings } from "./settings"
 
 async function main() {
-  const contract = await ethers.deployContract("DefaultNFT", [deploySettings.contractName, deploySettings.contractSymbol]);
+  const contract = await ethers.deployContract("DefaultNFT",
+    [deploySettings.contractName, deploySettings.contractSymbol]);
 
   await contract.waitForDeployment();
 
