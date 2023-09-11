@@ -46,8 +46,9 @@ Inside `.env` input the following variables:
    6. `RPC_URL` -  the rpc url (Mumbai testnet is recomended for tests).
  
 After setting up the `.env` file open `./src/alchemy_config.ts`.
-Input the apiKey` - your Alchemy API key.
 Input the `network` - the name of the blochain with the deployed ERC721 collection (Mumbai by default).
+
+### ⚠️ Warning: Make sure `network`  is set to a testnet before running run `yarn test` ⚠️
 
 ### Running and testing the web-service
 1. In your terminal open the `backend` folder
