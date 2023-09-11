@@ -23,7 +23,7 @@ paths:
       description: Lists minted NFTs of a collection and amount of NFTs available to mint.
       responses:
         200:
-          description: App is up and running
+          description: List of minted NFTs and the amount available to mint
 
   /purchase/{userAddress}/{nftQuantity}:
     post:
@@ -41,11 +41,7 @@ paths:
       description: Mints requested quantity of NFTs to a provided user address.
       responses:
         200:
-          description: Success
-          content:
-            application/json:
-            schema:
-              $ref: "#/components/schema/productResponse"
+          description: Successful minting message with a transaction hash aatached
         400:
           description: Wrong user address
         401:
