@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
-  title: Authic Labs Assigment
-  description: Authic Labs Gasless NFT minting solution
+  title: Gasless NFT minting
+  description: Gasless NFT minting
   version: 1.0
   contact:
     email: xanhadev@gmail.com
